@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+	body{background: black}
+		.black_overlay{
+
+    display: none;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 600px;
+    background-color: black;
+    z-index:1001;
+    -moz-opacity: 0.8;
+    opacity:.50;
+    filter: alpha(opacity=50);
+}
+.white_content {
+    display: none;
+    position: absolute;
+    top: 5%;
+    left: 36%;
+    width: 33%;
+
+    background-color: rgb(230,230,230,0.3);
+    z-index: 1002;
+    height: 500px;
+    /* overflow: auto; */
+}
+.white_content_small {
+    display: none;
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    width: 40%;
+    height: 50%;
+    border: 16px solid lightblue;
+    background-color: white;
+    z-index:1002;
+    overflow: auto;
+}
+ul{
+	list-style: none
+}
+ul	li{
+	float: left
+}
+ul	li img{
+	width: 100px;
+	height: 150px
+}
+	</style>
+
+
+</head>
+<body>
+
+
+<div id="MyDiv" class="white_content">
+    <div style="text-align: right; cursor: default; margin-top:10px;margin-bottom:10px;">
+        <span style="font-size: 16px; margin-right: 17px; color: #56BE2D; font-weight: 600;cursor:pointer;"  onclick="CloseDiv('MyDiv','fade')">x</span>
+    </div>
+    <div class="itempanel" style="    margin-left: 13%;">
+        <div class="floatleft title" style="text-align: left;"></div>
+        <div class="floatleft editor" style="font-size:16px;height: 24px;line-height: 24px;"><img src="images/图1.jpg" style="width: 300px;height: 500px">
+        	<div style="background: rgb(77,0,243);width: 170px;height: 100px;position: absolute;left: 350px;top: 100px;color: white" >
+        		CROSBY ST <br>
+        		ISO: 125 <br>
+        		Aperture: f2.5 <br>
+        		Shutter speed: 1/89s  <br>
+        	</div>
+        	<img src="images/图1地图.jpg" style="width: 100px;height: 100px;position: absolute;left: 510px;top: 150px">
+
+        </div>
+        <div class="floatleft message"></div>
+        <div class="clear"></div>
+    </div>
+
+</div>
+
+<div id="MyDiv2" class="white_content">
+    <div style="text-align: right; cursor: default; margin-top:10px;margin-bottom:10px;">
+        <span style="font-size: 16px; margin-right: 17px; color: #56BE2D; font-weight: 600;cursor:pointer;"  onclick="CloseDiv('MyDiv2','fade')">x</span>
+    </div>
+    <div class="itempanel" style="    margin-left: 13%;">
+        <div class="floatleft title" style="text-align: left;"></div>
+        <div class="floatleft editor" style="font-size:16px;height: 24px;line-height: 24px;"><img src="images/图2.jpg" style="width: 300px;height: 500px">
+        	<div style="background: rgb(77,0,243);width: 170px;height: 100px;position: absolute;left: 350px;top: 100px;color: white" >
+        		RIVINGTON ST<br>
+        		ISO: 200 <br>
+        		Aperture: f1.5<br>
+        		Shutter speed: 1/120s
+ <br>
+        	</div>
+        	<img src="images/图2地图.jpg" style="width: 100px;height: 100px;position: absolute;left: 510px;top: 150px">
+
+        </div>
+        <div class="floatleft message"></div>
+        <div class="clear"></div>
+    </div>
+
+</div>
+
+<div id="MyDiv3" class="white_content">
+    <div style="text-align: right; cursor: default; margin-top:10px;margin-bottom:10px;">
+        <span style="font-size: 16px; margin-right: 17px; color: #56BE2D; font-weight: 600;cursor:pointer;"  onclick="CloseDiv('MyDiv3','fade')">x</span>
+    </div>
+    <div class="itempanel" style="    margin-left: 13%;">
+        <div class="floatleft title" style="text-align: left;"></div>
+        <div class="floatleft editor" style="font-size:16px;height: 24px;line-height: 24px;"><img src="images/图3.jpg" style="width: 300px;height: 500px">
+        	<div style="background: rgb(77,0,243);width: 170px;height: 100px;position: absolute;left: 350px;top: 100px;color: white" >
+        		CHRYSTIE ST <br>
+        		ISO: 160 <br>
+        		Aperture: f1.5 <br>
+        		Shutter speed: 1/60s <br>
+        	</div>
+        	<img src="images/图3地图.jpg" style="width: 100px;height: 100px;position: absolute;left: 510px;top: 150px">
+
+        </div>
+        <div class="floatleft message"></div>
+        <div class="clear"></div>
+    </div>
+
+</div>
+<div id="fade" class="black_overlay"></div>
+<h2 style="color: white">HOME</h2>
+<h2 style="color: white;position: absolute;right: 10px;top: 1px">ABOUT</h2>
+<ul>
+	<li>
+		<img src="images/图1.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/图2.jpg" onclick="javasrcipt:ShowDiv('MyDiv2','fade')">
+		<img src="images/图3.jpg" onclick="javasrcipt:ShowDiv('MyDiv3','fade')">
+		<img src="images/7.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/8.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/9.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/10.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/11.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/12.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/13.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/14.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/15.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+
+		<img src="images/16.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/17.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/18.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/19.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/20.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/21.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/22.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/7.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/4.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/5.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/6.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/7.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/8.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/9.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/10.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/11.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/12.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/13.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/14.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/15.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+
+		<img src="images/16.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/17.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/18.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/19.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/20.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/21.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/22.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/7.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/4.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/5.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/6.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/7.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/8.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/9.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/10.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/11.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/12.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/13.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/14.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/15.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+
+		<img src="images/16.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/17.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+		<img src="images/18.jpg" onclick="javasrcipt:ShowDiv('MyDiv','fade')">
+
+
+
+
+	</li>
+</ul>
+
+<script type="text/javascript">
+	function ShowDiv(show_div,bg_div){
+    var scrollHeight = document.body.scrollHeight; //文档高度
+    document.getElementById(bg_div).style.height=scrollHeight+'px';
+
+    document.getElementById(show_div).style.display='block';
+    document.getElementById(bg_div).style.display='block';
+};
+//关闭弹出层
+function CloseDiv(show_div,bg_div)
+{
+
+    document.getElementById(show_div).style.display='none';
+    document.getElementById(bg_div).style.display='none';
+};
+//关闭弹出层
+function CloseDiv2()
+{
+    document.getElementById("MyDiv").style.display='none';
+    document.getElementById("fade").style.display='none';
+};
+</script>
+</body>
+</html>
