@@ -23,6 +23,129 @@
 	</div>
 
 </body>
+<script type="text/javascript">
+	/* 可滚动卷轴对象
+ * @description : 容器里拖动鼠标可实现内容滚动，兼容各类浏览器(ie6/7/8/firefox/safari/opera/chrome/)。
+ *      using: new Scroller(@id|{id:@id,drag:false|true,scroll:true|false,scrollBase:@number}) 即可  id为你的容器对象或容器ID
+ * @date  : 2011-07-12
+ * @author  : <a href="mailto:limanzu753@163.com">limanzu753@163.com</a>
+ * history  :
+ *    2011-07-13  修改鼠标在容器外里还可以继续滚动 0.11 <a href="mailto:limanzu753@163.com">limanzu753@163.com</a>
+ *    2011-07-20  增加鼠标滚动，动态配置滚动像素，动态配置是否支持鼠标滚动以及鼠标拽动滚动功能
+ */
+function Scroller(args) {
+    if (this instanceof Scroller == false) { return new Scroller(args); }
 
-
+    if (typeof args === "string") {
+        this.container = this.$(args); //容器对象
+        this.drag = true;
+        this.scroll = true;
+        this.scrollBase = 1;
+    } else {
+        this.container = this.$(args.id || args.container || args.obj); //容器对象
+        this.drag = args.drag == undefined ? true : args.drag;
+        this.scroll = args.scroll == undefined ? true : args.scroll;
+        this.scrollBase = args.scrollBase || 1;
+    }
+    this.y = 0;//mousedown时记录鼠标的纵坐标
+    this.init();
+}
+Scroller.prototype = {
+    $: function (id) {
+        if (typeof id === "object") { return id; }
+        return document.getElementById(id);
+    },
+    init: function () {//Scroller初始化
+        if (!this.container) { return; }//如果容器不存在，需要提示用户或其它操作者，请在这里跑出异常
+        var _this = this;
+        var _mousemove = function (e) {//鼠标移动事件
+            var e = e || event, mousePoint = _this.getMousePoint(e);
+            _this.container.scrollTop += _this.y - mousePoint.y;//鼠标移动多少像素，容器就滚动多少像素，不管上下
+            _this.container.scrollLeft += _this.x - mousePoint.x;//鼠标移动多少像素，容器就滚动多少像素，不管左右 //支持水平滚动
+            _this.y = mousePoint.y; //光标的每次移动都要记录下当前的纵坐标
+        };
+        var _mouseup = function (e) {//鼠标弹起事件
+            _this.unbind('mousemove', _this.container, _mousemove);
+        };
+        var _mousedown = function (e) { //鼠标按下事件
+            var e = e || event;
+            var mousePoint = _this.getMousePoint(e);
+            _this.y = mousePoint.y;
+            _this.x = mousePoint.x; //支持水平滚动
+            _this.bind('mousemove', _this.container, _mousemove);
+        };
+        var _mouseout = function (e) {//鼠标离开事件
+            /* 判断光标是否在容器内部，不然会出来鼠标还没弹起而光标在容器外部还可以滚动的问题。
+             当然这个问题影响不大。也可以不判断*/
+            var e = e || event;
+            if (_this.isMouseOut(e, _this.container) === true) {
+                _this.unbind('mousemove', _this.container, _mousemove);
+            }
+        };
+        var _mousescroll = function (e) {
+            var e = e || event, scrollBase = _this.scrollBase;
+            if (e.type === "mousewheel") {
+                _this.container.scrollTop += (e.wheelDelta < 0 ? scrollBase : scrollBase * (-1));
+            } else {
+                _this.container.scrollTop += (e.detail > 0 ? scrollBase : scrollBase * (-1));
+            }
+        }
+        if (this.drag === true) {
+            this.bind('mousedown', this.container, _mousedown);
+            this.bind('mouseup', this.container, _mouseup);
+            this.bind('mouseout', this.container, _mouseout);
+        }
+        if (this.scroll === true) {
+            this.bind('mousewheel', this.container, _mousescroll);//IE系列
+            this.bind('DOMMouseScroll', this.container, _mousescroll);//ff系列
+        }
+        this.bind('selectstart', this.container, function () { return false; });
+    },
+    getAbsPoint: function (el) {//取得容器的绝对坐标
+        var x = el.offsetLeft, y = el.offsetTop;
+        while (el = el.offsetParent) {
+            x += el.offsetLeft;
+            y += el.offsetTop;
+        }
+        return { "x": x, "y": y };
+    },
+    isMouseOut: function (e, el) {//判断鼠标是否在容器外面。不能直接使用onmouseout
+        var point = this.getAbsPoint(el), mousePoint = this.getMousePoint(e);
+        if (mousePoint.x < point.x || mousePoint.y < point.y
+        || mousePoint.x > point.x + this.container.offsetWidth || mousePoint.y > point.y + this.container.offsetHeight) {
+            return true;
+        }
+        return false;
+    },
+    getMousePoint: function (ev) {//取得鼠标的位置
+        if (!ev) { return; }
+        if (ev.pageX || ev.pageY) { return { x: ev.pageX, y: ev.pageY }; }
+        var doc = document;
+        return {
+            x: ev.clientX + doc.body.scrollLeft - doc.body.clientLeft,
+            y: ev.clientY + doc.body.scrollTop - doc.body.clientTop
+        };
+    },
+    setScrollBase: function (scrollBase) {
+        this.scrollBase = scrollBase;
+    },
+    bind: function (type, obj, func) {//添加事件监听
+        if (!document.all) {
+            obj.addEventListener(type, func, false);
+        } else {//IE
+            obj.attachEvent('on' + type, func);
+        }
+    },
+    unbind: function (type, obj, func) {
+        if (!document.all) {
+            obj.removeEventListener(type, func, false);
+        } else {//IE
+            obj.detachEvent('on' + type, func);
+        }
+    }
+}
+</script>
+<script>
+    new Scroller("divMainTable");//
+</script>
 </html>
